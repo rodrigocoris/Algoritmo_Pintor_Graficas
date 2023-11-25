@@ -32,13 +32,62 @@ public class Algoritmo_Pintor extends JFrame {
 
     private void render3DScene() {
         // Barras estiradas
-        drawStretchedBars();
+        Barra2();
 
         // Barras diagonales inclinadas
-        drawDiagonalBars();
+        Barra3();
+
+        Barra1();
     }
 
-    private void drawStretchedBars() {
+
+     private void Barra1() {
+        // Coordenadas de los vértices de la primera barra
+        int[][] vertices1 = {
+                { -50, -50, -50 }, { -50, -50, 50 },
+                { -50, 50, -50 }, { -50, 50, 50 },
+                { 50, -50, -50 }, { 50, -50, 50 },
+                { 50, 50, -50 }, { 50, 50, 50 }
+        };
+    
+        // Coordenadas de los vértices de la segunda barra (encima de la primera)
+        int[][] vertices2 = new int[8][3];
+        for (int i = 0; i < 8; i++) {
+            vertices2[i][0] = vertices1[i][0];
+            vertices2[i][1] = vertices1[i][1] - 200; // Ajusta la altura 
+            vertices2[i][2] = vertices1[i][2];
+        }
+    
+        // Coordenadas de los vértices de la tercera barra (a la izquierda de la primera)
+        int[][] vertices3 = new int[8][3];
+        for (int i = 0; i < 8; i++) {
+            vertices3[i][0] = vertices1[i][0] +0; // Ajusta la posición a la izquierda
+            vertices3[i][1] = vertices2[i][1] + 100; // Ajusta la altura 
+            vertices3[i][2] = vertices1[i][2];
+        }
+    
+        // Caras de las barras
+        int[][] faces = {
+                { 0, 1, 3, 2 }, // Cara frontal
+                { 4, 5, 7, 6 }, // Cara posterior
+                { 0, 1, 5, 4 }, // Cara izquierda
+                { 2, 3, 7, 6 }, // Cara derecha
+                { 0, 2, 6, 4 }, // Cara inferior
+                { 1, 3, 7, 5 } // Cara superior
+        };
+    
+        // Dibujar las caras de la primera barra
+        drawBarFaces(faces, vertices1, Color.RED.getRGB());
+    
+        // Dibujar las caras de la segunda barra
+        drawBarFaces(faces, vertices2, Color.GREEN.getRGB());
+    
+        // Dibujar las caras de la tercera barra
+        drawBarFaces(faces, vertices3, Color.BLUE.getRGB());
+    }
+
+
+    private void Barra2() {
         // Coordenadas de los vértices de la primera barra
         int[][] vertices1 = {
                 { -50, -50, -50 }, { -50, -50, 50 },
@@ -83,7 +132,7 @@ public class Algoritmo_Pintor extends JFrame {
         drawBarFaces(faces, vertices3, Color.BLUE.getRGB());
     }
 
-    private void drawDiagonalBars() {
+    private void Barra3() {
         // Coordenadas de los vértices de la cuarta barra diagonal
         int[][] vertices4 = {
                 { -50, -50, -50 }, { -50, -50, 50 },
