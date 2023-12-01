@@ -31,6 +31,14 @@ public class Algoritmo_Pintor extends JFrame {
         getContentPane().add(panel);
     }
 
+    // Método principal que inicia la aplicación Swing
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            Algoritmo_Pintor painter = new Algoritmo_Pintor();
+            painter.setVisible(true);
+        });
+    }
+
     // Método para renderizar la escena 3D
     private void render3DScene() {
         // Llama a métodos para dibujar tres barras en la escena
@@ -57,7 +65,8 @@ public class Algoritmo_Pintor extends JFrame {
             vertices2[i][2] = vertices1[i][2];
         }
 
-        // Coordenadas de los vértices de la tercera barra (a la izquierda de la primera)
+        // Coordenadas de los vértices de la tercera barra (a la izquierda de la
+        // primera)
         int[][] vertices3 = new int[8][3];
         for (int i = 0; i < 8; i++) {
             vertices3[i][0] = vertices1[i][0] + 0; // Ajusta la posición a la izquierda
@@ -72,7 +81,7 @@ public class Algoritmo_Pintor extends JFrame {
                 { 0, 1, 5, 4 }, // Cara izquierda
                 { 2, 3, 7, 6 }, // Cara derecha
                 { 0, 2, 6, 4 }, // Cara inferior
-                { 1, 3, 7, 5 }  // Cara superior
+                { 1, 3, 7, 5 } // Cara superior
         };
 
         // Dibuja las caras de la primera barra con diferentes colores
@@ -114,7 +123,7 @@ public class Algoritmo_Pintor extends JFrame {
                 { 0, 1, 5, 4 }, // Cara izquierda
                 { 2, 3, 7, 6 }, // Cara derecha
                 { 0, 2, 6, 4 }, // Cara inferior
-                { 1, 3, 7, 5 }  // Cara superior
+                { 1, 3, 7, 5 } // Cara superior
         };
 
         // Dibuja las caras de la segunda barra con diferentes colores
@@ -162,7 +171,7 @@ public class Algoritmo_Pintor extends JFrame {
                 { 0, 1, 5, 4 }, // Cara izquierda
                 { 2, 3, 7, 6 }, // Cara derecha
                 { 0, 2, 6, 4 }, // Cara inferior
-                { 1, 3, 7, 5 }  // Cara superior
+                { 1, 3, 7, 5 } // Cara superior
         };
 
         // Dibuja las caras de la tercera barra diagonal con diferentes colores
@@ -251,13 +260,5 @@ public class Algoritmo_Pintor extends JFrame {
 
         // Dibuja la imagen en el componente gráfico
         g.drawImage(image, 0, 0, this);
-    }
-
-    // Método principal que inicia la aplicación Swing
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Algoritmo_Pintor painter = new Algoritmo_Pintor();
-            painter.setVisible(true);
-        });
     }
 }
